@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.leo.myspringboot</groupId>
+    <artifactId>myspringboot-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>myspringboot-beans</module>
+        <module>myspringboot-dao</module>
+        <module>myspringboot-iservice</module>
+        <module>myspringboot-service-impl</module>
+        <module>myspringboot-utils</module>
+        <module>myspringboot-web</module>
+    </modules>
+
+    <properties>
+        <myspringboot.core-finalName>myspringboot-core</myspringboot.core-finalName>
+        <myspringboot.control-finalName>myspringboot-control</myspringboot.control-finalName>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <skipTests>true</skipTests>
+        <spring-boot-starter-parent.version>1.5.1.RELEASE</spring-boot-starter-parent.version>
+        <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>local-dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <project.profile>local-dev</project.profile>
+                <itframe.mode>local-dev</itframe.mode>
+            </properties>
+        </profile>
+        <profile>
+            <id>development</id>
+            <properties>
+                <project.profile>development</project.profile>
+                <itframe.mode>development</itframe.mode>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <project.profile>production</project.profile>
+                <itframe.mode>production</itframe.mode>
+            </properties>
+        </profile>
+        <profile>
+            <id>singleprod</id>
+            <properties>
+                <project.profile>singleprod</project.profile>
+                <itframe.mode>singleprod</itframe.mode>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <project.profile>test</project.profile>
+                <itframe.mode>test</itframe.mode>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-beans</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-dao</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-iservice</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-utils</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <!-- 具体的包引入参考 https://blog.csdn.net/shuxing520/article/details/78213862 -->
+            <!-- 上边引入 parent，因此 下边无需指定版本 -->
+            <!-- 这是Spring Boot的核心启动器，包含了自动配置、日志和YAML -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+            <!-- 包含 mvc -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+            <!-- Springboot添加aop-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+            <!-- Springboot添加JavaBean处理工具包支持属性注入 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+            <!-- Springboot添加test-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+                <!-- scope为test表示依赖项目仅仅参与测试相关的工作，包括测试代码的编译，执行。比较典型的如junit -->
+                <scope>test</scope>
+            </dependency>
+            <!-- Springboot添加redis连接工具 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+
+            <!-- Springboot添加ehcache缓存 -->
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+
+            <!-- Springboot添加mysql-connector-java驱动支持 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <!-- runntime表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。与compile相比，跳过编译而已，说实话在终端的项目（非开源，企业内部系统）中，和compile区别不是很大-->
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- Springboot添加mybatis-plus支持-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <!-- mybatis-plus代码生成器支持-->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>2.0</version>
+            </dependency>
+
+            <!-- 阿里系的Druid依赖包 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.9</version>
+            </dependency>
+            <!-- Druid 依赖 log4j包 -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+
+            <!-- Springboot集成fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.49</version>
+            </dependency>
+
+            <!-- 添加commons-lang3工具类是commons-lang升级版解决漏洞问题 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
+            </dependency>
+
+            <!-- Springboot集成swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+
+            <!--Springboot添加Dubbo 依赖-->
+            <dependency>
+                <groupId>io.dubbo.springboot</groupId>
+                <artifactId>spring-boot-starter-dubbo</artifactId>
+                <version>${dubbo-spring-boot}</version>
+            </dependency>
+            <!--Dubbo 依赖-->
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.20.0-GA</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <quiet>true</quiet>
+                            <files>
+                                <file>${user.dir}/config/${project.profile}.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

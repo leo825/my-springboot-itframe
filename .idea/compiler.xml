@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="myspringboot-beans" />
+        <module name="myspringboot-dao" />
+        <module name="myspringboot-iservice" />
+        <module name="myspringboot-service-impl" />
+        <module name="myspringboot-utils" />
+        <module name="myspringboot-web" />
+        <module name="springboot-beans" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="my-springboot-itframe" target="1.8" />
+      <module name="myspringboot-beans" target="1.8" />
+      <module name="myspringboot-dao" target="1.8" />
+      <module name="myspringboot-iservice" target="1.8" />
+      <module name="myspringboot-service-impl" target="1.8" />
+      <module name="myspringboot-utils" target="1.8" />
+      <module name="myspringboot-web" target="1.8" />
+      <module name="springboot-beans" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
