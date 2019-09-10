@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leo.myspringboot.dao.CourseMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.leo.myspringboot.beans.Course">
+		<id column="id" property="id" />
+		<result column="c_number" property="cNumber" />
+		<result column="name" property="name" />
+		<result column="create_time" property="createTime" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="update_time" property="updateTime" />
+		<result column="update_user_id" property="updateUserId" />
+		<result column="state" property="state" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, c_number AS cNumber, name, create_time AS createTime, create_user_id AS createUserId, update_time AS updateTime, update_user_id AS updateUserId, state, remark
+    </sql>
+
+	<select id="selectPageWithParam" resultType="com.leo.myspringboot.beans.Course" parameterType="com.leo.myspringboot.beans.Course">
+		select
+        <include refid="Base_Column_List"></include>
+		from t_course
+	</select>
+
+	<select id="selectOneByObj" resultType="com.leo.myspringboot.beans.Course" parameterType="java.lang.Long">
+		select
+        <include refid="Base_Column_List"/>
+		from t_course
+		<where>
+			id = #{id, jdbcType=VARCHAR}
+		</where>
+	</select>
+</mapper>

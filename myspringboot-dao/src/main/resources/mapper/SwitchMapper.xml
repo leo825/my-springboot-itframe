@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress MybatisMapperXmlInspection -->
+<mapper namespace="com.leo.myspringboot.dao.SwitchMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.leo.myspringboot.beans.Switch">
+		<id column="id" property="id" />
+		<result column="biz_sys_code" property="bizSysCode" />
+		<result column="swtch_desc" property="swtchDesc" />
+		<result column="swtch_key" property="swtchKey" />
+		<result column="swtch_val" property="swtchVal" />
+		<result column="crt_user_id" property="crtUserId" />
+		<result column="crt_time" property="crtTime" />
+		<result column="crt_app_sys_id" property="crtAppSysId" />
+		<result column="modf_user_id" property="modfUserId" />
+		<result column="modf_time" property="modfTime" />
+		<result column="modf_app_sys_id" property="modfAppSysId" />
+		<result column="cache_type_cd" property="cacheTypeCd" />
+		<result column="valid_flag" property="validFlag" />
+		<result column="cache_data_type_cd" property="cacheDataTypeCd" />
+		<result column="push_alert_flag" property="pushAlertFlag" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, biz_sys_code AS bizSysCode, swtch_desc AS swtchDesc, swtch_key AS swtchKey, swtch_val AS swtchVal, crt_user_id AS crtUserId, crt_time AS crtTime, crt_app_sys_id AS crtAppSysId, modf_user_id AS modfUserId, modf_time AS modfTime, modf_app_sys_id AS modfAppSysId, cache_type_cd AS cacheTypeCd, valid_flag AS validFlag, cache_data_type_cd AS cacheDataTypeCd, push_alert_flag AS pushAlertFlag
+    </sql>
+
+	<select id="selectPageWithParam" resultType="com.leo.myspringboot.beans.Switch" parameterType="com.leo.myspringboot.beans.Switch">
+		select
+        <include refid="Base_Column_List"/>
+		from t_switch
+	</select>
+
+	<select id="selectOneByObj" resultType="com.leo.myspringboot.beans.Switch" parameterType="java.lang.Long">
+		select
+        <include refid="Base_Column_List"/>
+		from t_switch
+		<where>
+			id = #{id, jdbcType=VARCHAR}
+		</where>
+	</select>
+</mapper>

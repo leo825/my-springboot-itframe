@@ -5,23 +5,23 @@
     <parent>
         <groupId>com.leo.myspringboot</groupId>
         <artifactId>myspringboot-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.leo.myspringboot</groupId>
     <artifactId>myspringboot-service-impl</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.leo.myspringboot</groupId>
-            <artifactId>myspringboot-beans</artifactId>
+            <artifactId>myspringboot-bean</artifactId>
         </dependency>
         <dependency>
             <groupId>com.leo.myspringboot</groupId>
-            <artifactId>myspringboot-utils</artifactId>
+            <artifactId>myspringboot-util</artifactId>
         </dependency>
         <dependency>
             <groupId>com.leo.myspringboot</groupId>
@@ -35,24 +35,39 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- 引入spring-boot-starter以及dubbo和curator的依赖 -->
         <dependency>
-            <groupId>io.dubbo.springboot</groupId>
+            <groupId>com.gitee.reger</groupId>
             <artifactId>spring-boot-starter-dubbo</artifactId>
         </dependency>
 
-        <!--Dubbo 依赖-->
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+
+        <!-- Springboot添加mysql-connector-java驱动支持 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+
     </dependencies>
 
+
     <build>
-        <finalName>${cmos.core-finalName}</finalName>
+        <finalName>${myspringboot.core-finalName}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -63,6 +78,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

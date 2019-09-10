@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leo.myspringboot.dao.TeacherMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.leo.myspringboot.beans.Teacher">
+		<id column="id" property="id" />
+		<result column="tea_number" property="teaNumber" />
+		<result column="name" property="name" />
+		<result column="sex" property="sex" />
+		<result column="depe" property="depe" />
+		<result column="professional" property="professional" />
+		<result column="tea_mobile" property="teaMobile" />
+		<result column="tea_Email" property="teaEmail" />
+		<result column="tea_address" property="teaAddress" />
+		<result column="tea_profile" property="teaProfile" />
+		<result column="role_id" property="roleId" />
+		<result column="create_time" property="createTime" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="update_time" property="updateTime" />
+		<result column="update_user_id" property="updateUserId" />
+		<result column="state" property="state" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tea_number AS teaNumber, name, sex, depe, professional, tea_mobile AS teaMobile, tea_Email AS teaEmail, tea_address AS teaAddress, tea_profile AS teaProfile, role_id AS roleId, create_time AS createTime, create_user_id AS createUserId, update_time AS updateTime, update_user_id AS updateUserId, state, remark
+    </sql>
+
+	<select id="selectPageWithParam" resultType="com.leo.myspringboot.beans.Teacher" parameterType="com.leo.myspringboot.beans.Teacher">
+		select
+        <include refid="Base_Column_List"/>
+		from t_teacher
+	</select>
+
+	<select id="selectOneByObj" resultType="com.leo.myspringboot.beans.Teacher" parameterType="java.lang.Long">
+		select
+        <include refid="Base_Column_List"/>
+		from t_teacher
+		<where>
+			id = #{id, jdbcType=VARCHAR}
+		</where>
+	</select>
+</mapper>

@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="myspringboot-bean" />
         <module name="myspringboot-beans" />
         <module name="myspringboot-dao" />
         <module name="myspringboot-iservice" />
         <module name="myspringboot-service-impl" />
+        <module name="myspringboot-util" />
         <module name="myspringboot-utils" />
         <module name="myspringboot-web" />
         <module name="springboot-beans" />

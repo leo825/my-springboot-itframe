@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leo.myspringboot.dao.ScoreMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.leo.myspringboot.beans.Score">
+		<id column="id" property="id" />
+		<result column="s_number" property="sNumber" />
+		<result column="c_number" property="cNumber" />
+		<result column="t_number" property="tNumber" />
+		<result column="score" property="score" />
+		<result column="create_time" property="createTime" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="update_time" property="updateTime" />
+		<result column="update_user_id" property="updateUserId" />
+		<result column="state" property="state" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, s_number AS sNumber, c_number AS cNumber, t_number AS tNumber, score, create_time AS createTime, create_user_id AS createUserId, update_time AS updateTime, update_user_id AS updateUserId, state, remark
+    </sql>
+
+	<select id="selectPageWithParam" resultType="com.leo.myspringboot.beans.Score" parameterType="com.leo.myspringboot.beans.Score">
+		select
+        <include refid="Base_Column_List"/>
+		from t_score
+	</select>
+
+	<select id="selectOneByObj" resultType="com.leo.myspringboot.beans.Score" parameterType="java.lang.Long">
+		select
+        <include refid="Base_Column_List"></include>
+		from t_score
+		<where>
+			id = #{id, jdbcType=VARCHAR}
+		</where>
+	</select>
+</mapper>

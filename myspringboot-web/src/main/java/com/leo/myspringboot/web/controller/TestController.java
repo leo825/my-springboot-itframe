@@ -1,9 +1,6 @@
 package com.leo.myspringboot.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.leo.myspringboot.beans.User;
-
-import com.leo.myspringboot.iservice.IUserSV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
-    @Reference(version = "1.0.0")
-    IUserSV userSV;
+
 
     private final Logger logger = LoggerFactory.getLogger(TestController.class);
 
@@ -31,8 +27,7 @@ public class TestController {
 
     @RequestMapping(value = "/helloworld2/{name}", method = {RequestMethod.GET, RequestMethod.POST})
     public String helloworld2(@PathVariable("name") String name) {
-        User user = userSV.findUser(name);
-        return user.getName();
+        return name;
     }
 
     @RequestMapping(value = "/helloworld3", method = {RequestMethod.GET, RequestMethod.POST})

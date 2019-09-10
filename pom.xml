@@ -7,13 +7,13 @@
     <groupId>com.leo.myspringboot</groupId>
     <artifactId>myspringboot-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <modules>
-        <module>myspringboot-beans</module>
+        <module>myspringboot-bean</module>
         <module>myspringboot-dao</module>
         <module>myspringboot-iservice</module>
         <module>myspringboot-service-impl</module>
-        <module>myspringboot-utils</module>
+        <module>myspringboot-util</module>
         <module>myspringboot-web</module>
     </modules>
 
@@ -24,8 +24,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
-        <spring-boot-starter-parent.version>1.5.1.RELEASE</spring-boot-starter-parent.version>
+        <spring-boot-starter-parent.version>1.5.9.RELEASE</spring-boot-starter-parent.version>
         <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
+        <swagger2.version>2.7.0</swagger2.version>
     </properties>
 
     <profiles>
@@ -76,25 +77,29 @@
         <dependencies>
             <dependency>
                 <groupId>com.leo.myspringboot</groupId>
-                <artifactId>myspringboot-beans</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>myspringboot-bean</artifactId>
+                <version>${version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.leo.myspringboot</groupId>
                 <artifactId>myspringboot-dao</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${version}</version>
             </dependency>
             <dependency>
                 <groupId>com.leo.myspringboot</groupId>
                 <artifactId>myspringboot-iservice</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.leo.myspringboot</groupId>
-                <artifactId>myspringboot-utils</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>myspringboot-service-impl</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-util</artifactId>
+                <version>${version}</version>
             </dependency>
 
             <!-- 具体的包引入参考 https://blog.csdn.net/shuxing520/article/details/78213862 -->
@@ -149,8 +154,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <!-- runntime表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。与compile相比，跳过编译而已，说实话在终端的项目（非开源，企业内部系统）中，和compile区别不是很大-->
-                <scope>runtime</scope>
+                <version>5.1.46</version>
             </dependency>
 
             <!-- Springboot添加mybatis-plus支持-->
@@ -169,7 +173,7 @@
             <!-- 阿里系的Druid依赖包 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
+                <artifactId>druid</artifactId>
                 <version>1.1.9</version>
             </dependency>
             <!-- Druid 依赖 log4j包 -->
@@ -197,30 +201,32 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.7.0</version>
+                <version>${swagger2.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
-                <version>2.7.0</version>
+                <version>${swagger2.version}</version>
             </dependency>
 
-            <!--Springboot添加Dubbo 依赖-->
+            <!-- Springboot集成dubbo-->
             <dependency>
-                <groupId>io.dubbo.springboot</groupId>
+                <groupId>com.gitee.reger</groupId>
                 <artifactId>spring-boot-starter-dubbo</artifactId>
-                <version>${dubbo-spring-boot}</version>
+                <version>1.0.10</version>
             </dependency>
-            <!--Dubbo 依赖-->
             <dependency>
-                <groupId>org.javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>3.20.0-GA</version>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>0.5</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <build>
+
+        <!--<pluginManagement>-->
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -242,6 +248,8 @@
                 </executions>
             </plugin>
         </plugins>
+        <!--</pluginManagement>-->
+
     </build>
 
 </project>
