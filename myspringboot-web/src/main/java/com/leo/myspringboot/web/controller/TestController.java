@@ -1,8 +1,10 @@
 package com.leo.myspringboot.web.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
+import com.leo.myspirngboot.autoconfigservice.beans.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
-
+    @Autowired
+    Person person;
 
     private final Logger logger = LoggerFactory.getLogger(TestController.class);
 
@@ -48,6 +51,13 @@ public class TestController {
 //        logger.info("helloworld4方法体结束执行。。。");
 //        return userString;
 //    }
+
+    @RequestMapping(value = "/helloworld5", method = {RequestMethod.GET, RequestMethod.POST})
+    public String helloworld5() {
+        String psersonStr = JSON.toJSONString(person);
+        logger.info(psersonStr);
+        return psersonStr;
+    }
 
 
 }

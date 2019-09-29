@@ -15,6 +15,7 @@
         <module>myspringboot-service-impl</module>
         <module>myspringboot-util</module>
         <module>myspringboot-web</module>
+        <module>myspringboot-autoconfigservice</module>
     </modules>
 
     <properties>
@@ -27,6 +28,7 @@
         <spring-boot-starter-parent.version>1.5.9.RELEASE</spring-boot-starter-parent.version>
         <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
         <swagger2.version>2.7.0</swagger2.version>
+        <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <profiles>
@@ -101,6 +103,11 @@
                 <artifactId>myspringboot-util</artifactId>
                 <version>${version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.leo.myspringboot</groupId>
+                <artifactId>myspringboot-autoconfigservice</artifactId>
+                <version>${version}</version>
+            </dependency>
 
             <!-- 具体的包引入参考 https://blog.csdn.net/shuxing520/article/details/78213862 -->
             <!-- 上边引入 parent，因此 下边无需指定版本 -->
@@ -126,7 +133,8 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${spring-boot-starter-parent.version}</version>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
             </dependency>
             <!-- Springboot添加test-->
             <dependency>
@@ -136,10 +144,28 @@
                 <!-- scope为test表示依赖项目仅仅参与测试相关的工作，包括测试代码的编译，执行。比较典型的如junit -->
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.0.4</version>
+            </dependency>
             <!-- Springboot添加redis连接工具 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+
+            <!-- Springboot添加自动注册类 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring-boot-starter-parent.version}</version>
             </dependency>
 
@@ -225,9 +251,20 @@
     </dependencyManagement>
 
     <build>
-
         <!--<pluginManagement>-->
         <plugins>
+            <!--编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!--打包配置插件 -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
@@ -247,6 +284,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
         <!--</pluginManagement>-->
 

@@ -26,9 +26,14 @@
             <groupId>com.leo.myspringboot</groupId>
             <artifactId>myspringboot-iservice</artifactId>
         </dependency>
+        <!-- 添加自动注册服务 -->
+        <dependency>
+            <groupId>com.leo.myspringboot</groupId>
+            <artifactId>myspringboot-autoconfigservice</artifactId>
+        </dependency>
         <!--<dependency>-->
-            <!--<groupId>com.leo.myspringboot</groupId>-->
-            <!--<artifactId>myspringboot-service-impl</artifactId>-->
+        <!--<groupId>com.leo.myspringboot</groupId>-->
+        <!--<artifactId>myspringboot-service-impl</artifactId>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

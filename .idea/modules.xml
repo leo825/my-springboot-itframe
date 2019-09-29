@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/my-springboot-itframe.iml" filepath="$PROJECT_DIR$/my-springboot-itframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myspringboot-autoconfigservice/myspringboot-autoconfigservice.iml" filepath="$PROJECT_DIR$/myspringboot-autoconfigservice/myspringboot-autoconfigservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/myspringboot-bean/myspringboot-bean.iml" filepath="$PROJECT_DIR$/myspringboot-bean/myspringboot-bean.iml" />
       <module fileurl="file://$PROJECT_DIR$/myspringboot-dao/myspringboot-dao.iml" filepath="$PROJECT_DIR$/myspringboot-dao/myspringboot-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/myspringboot-iservice/myspringboot-iservice.iml" filepath="$PROJECT_DIR$/myspringboot-iservice/myspringboot-iservice.iml" />
