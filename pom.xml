@@ -251,6 +251,20 @@
     </dependencyManagement>
 
     <build>
+
+        <!-- 使用指定的filter进行过滤，在执行mvn命令的时候带撒花姑娘-Pproduction就代表生产环境 -->
+        <filters>
+            <filter>${user.dir}/config/${project.profile}.properties</filter>
+        </filters>
+
+        <!-- 需要替换的配置文件的目录，此处是application.properties -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <!--<pluginManagement>-->
         <plugins>
             <!--编译插件 -->
@@ -265,25 +279,26 @@
             </plugin>
 
             <!--打包配置插件 -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <quiet>true</quiet>
-                            <files>
-                                <file>${user.dir}/config/${project.profile}.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>properties-maven-plugin</artifactId>-->
+                <!--<version>1.0-alpha-2</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>initialize</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>read-project-properties</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<quiet>true</quiet>-->
+                            <!--<files>-->
+                                <!--<file>${user.dir}/config/${project.profile}.properties</file>-->
+                            <!--</files>-->
+                            <!--&lt;!&ndash;&lt;!&ndash;输出全部配置项到指定文件&ndash;&gt;&ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
         </plugins>
         <!--</pluginManagement>-->
